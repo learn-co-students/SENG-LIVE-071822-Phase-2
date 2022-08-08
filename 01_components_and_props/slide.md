@@ -109,3 +109,15 @@ const h1 = (
 - public
 - src/index.js
 - src/App.js
+
+<!-- slide -->
+
+## Sneak Peak at where we're going
+
+Run the following command from `01_components_and_props/project_showcase`
+```bash
+npm run server
+```
+
+Then click the button below to open the app
+<button>[Project Showcase App](https://phase-2-react-project-showcase.netlify.app/projects)</button>
