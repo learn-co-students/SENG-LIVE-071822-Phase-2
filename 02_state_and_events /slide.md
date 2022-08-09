@@ -7,6 +7,10 @@ presentation:
 
 <!-- slide -->
 
+# State & Events
+
+<!-- slide -->
+
 <h2><strong> ✅ Objectives </strong></h2>
 
 - Explain the importance of state

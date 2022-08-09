@@ -7,7 +7,9 @@ const Header = () => {
         <span className="logo">{"//"}</span>
         Project Showcase
       </h1>
-      <button>Dark Mode</button>
+      <nav>
+        <button>Light Mode</button>
+      </nav>
     </header>
   );
 }
