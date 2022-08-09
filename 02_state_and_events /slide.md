@@ -176,14 +176,9 @@ We can also also refactor using a helper function:
 Currently, we are creating a `ProjectListItem` component for each project inside of the `projects` array:
 
 ```js
-const renderProjects = (projects) => {
-  return projects.map(project => (
-    <ProjectListItem
-      key={project.id}
-      project={project}
-    />
-  ))
-}
+const projectListItems = projects.map(project => {
+  return <ProjectListItem key={project.id} project={project} />
+})
 ```
 
 <br>
@@ -242,10 +237,12 @@ const searchResults = projects.filter((project) =>
 
 <br>
 
-5. Pass `searchResults` to `renderProjects`:
+5. Map over `searchResults` instead of `projects` when creating `projectListItems`:
 
 ```js
-<ul className="cards">{renderProjects(searchResults)}</ul>
+const projectListItems = searchResults.map(project => {
+  return <ProjectListItem key={project.id} project={project} />
+})
 ```
 
 <br>
