@@ -19,7 +19,7 @@
 
 #### 2. Use Inverse Data flow to implement Light-Dark mode
 
-- Refact isDarkMode state from the `Header` component to the `App` component.
+- Refactor isDarkMode state from the `Header` component to the `App` component.
 
 - Create a callback function that updates `isDarkMode` and pass the callback function as a prop to the `Header` component
 
