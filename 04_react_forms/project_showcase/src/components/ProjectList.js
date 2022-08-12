@@ -37,6 +37,7 @@ const ProjectList = ({ projects }) => {
         type="text"
         placeholder="Search..."
         onChange={handleSearch}
+        value={searchQuery}
       />
 
       <ul className="cards">{renderProjects}</ul>
