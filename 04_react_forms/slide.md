@@ -49,7 +49,32 @@ Form components also need an `onSubmit` listener on the form element to handle t
 ## Examples
 
 - [A Form with individual pieces of state per input](https://codesandbox.io/s/controlled-form-with-individual-pieces-of-state-pbjpe4?from-embed)
-- [Refactor to formState as an object](https://codesandbox.io/s/refactoring-a-controlled-form-with-individual-pieces-of-state-juv663?file=/src/App.js)
+- [Refactor to formState as an object](https://codesandbox.io/s/controlled-form-with-individual-pieces-of-state-for-object-refactor-1vpvf2)
+
+<!-- slide -->
+## 🤗 Reconciliation 🤗
+
+- When setState is called, React will re-render that component and all of its children
+- This is an expensive operation, so React optimizes by running a diffing algorithm to decide which components actually need to trigger committed changes to the DOM.
+- This diffing process is called [reconciliation](https://reactwithhooks.netlify.app/docs/reconciliation.html)
+- During reconciliation, React compares its own picture of the current state of the DOM tree with what it should look like after the change. Using this diff, the minimal DOM manipulation necessary is committed to reconcile the current DOM tree with what it should be after the change to state.
+
+<!-- slide -->
+
+## Why we don't mutate state directly
+
+- One of the choices made in the reconciliation process is to only commit to updating a component in the DOM if one of its nodes or property values has changed. If all nodes (types of React elements) and their props and values are the same, React will leave that component unchanged from the previous render.
+
+If an object or array is mutated directly and then set as the new value for state **React sees the same object in state as the previous render and leaves the DOM untouched**
+
+```js
+// so don't do this because it won't update the DOM
+state.prop = "New Value"
+setState(state);
+
+// do this instead because it will (newState object will be different from the old one)
+setState(state => ({...state, prop: "New Value"}) )
+```
 
 <!-- slide style="text-align: left;" -->
 
@@ -272,3 +297,28 @@ const handleSubmit = (e) => {
 - What our user sees in the input fields reflects the value of the state associated with that field. 
 - Example: Doing this allows us to make an edit form populated with a project's previously saved values for the inputs by setting the formState to match the saved record.
 
+<!-- slide -->
+
+## 🤗 Reconciliation 🤗
+
+- When setState is called, React will re-render that component and all of its children
+- This is an expensive operation, so React optimizes by running a diffing algorithm to decide which components actually need to trigger committed changes to the DOM.
+- This diffing process is called [reconciliation](https://reactwithhooks.netlify.app/docs/reconciliation.html)
+- During reconciliation, React compares its own picture of the current state of the DOM tree with what it should look like after the change. Using this diff, the minimal DOM manipulation necessary is committed to reconcile the current DOM tree with what it should be after the change to state.
+
+<!-- slide -->
+
+## Why we don't mutate state directly
+
+- One of the choices made in the reconciliation process is to only commit to updating a component in the DOM if one of its nodes or property values has changed. If all nodes (types of React elements) and their props and values are the same, React will leave that component unchanged from the previous render.
+
+If an object or array is mutated directly and then set as the new value for state **React sees the same object in state as the previous render and leaves the DOM untouched**
+
+```js
+// so don't do this because it won't update the DOM
+state.prop = "New Value"
+setState(state);
+
+// do this instead because it will (newState object will be different from the old one)
+setState(state => ({...state, prop: "New Value"}))
+```
