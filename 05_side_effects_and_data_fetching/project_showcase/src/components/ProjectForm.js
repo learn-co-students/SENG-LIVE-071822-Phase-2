@@ -23,8 +23,26 @@ const ProjectForm = ({ onAddProject }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
-    onAddProject(formData);
+    //  if we had individual pieces of state we could create formData first:
+    // const formData = {
+    //   name: name,
+    //   about: about,
+    //   link: link, 
+    //   phase: phase, 
+    //   image: image
+    // }
+    fetch("http://localhost:4000/projects", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    })
+      .then(response => response.json())
+      .then(savedProject => {
+        console.log(savedProject);
+        onAddProject(savedProject);
+      })
     setFormData(initialFormState);
   }
 
