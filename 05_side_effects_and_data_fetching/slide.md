@@ -27,6 +27,7 @@ presentation:
 - Load all projects from db on component load
 - Load all phase 4 projects from db when users click on the phase 4 button
 - Load all matching projects from db by phase and value in the search input
+- Bonus: Add debouncing to search input so our search input only triggers a single fetch request when we type (rather than sending one for each keystroke)
 
 <!-- slide style="text-align: left;" -->
 
@@ -199,11 +200,7 @@ useEffect(() => {
 
 - Examples: Timeouts, subscriptions, event listeners
 
-- Happens on a couple of occasions:
-
-  - When the component initially mounts, it will run the cleanup function before the effect function inside `useEffect()`
-
-  - After a re-render but before the effect function runs again: if there is any cleanup defined, it will run this first
+- How? Return a cleanup function from the useEffect callback!
 
 <!-- slide style="text-align: left;" -->
 
@@ -229,9 +226,17 @@ const Timer = () => {
 
 <br>
 
-When the component unmounts from the DOM, it is ensured that the interval has been cleared and we won't attempt to update a state variable for an unmounted component.
-
 [Codesandbox example](https://codesandbox.io/s/useeffect-cleanup-ig17kd?file=/src/Timer.js)
+
+<!-- slide -->
+
+## When does cleanup happen?
+
+  - During an update, if the side effect function will run again on this re-render, then the cleanup function will run first before the effect happens again.
+
+  - When the component unmounts (is removed from the DOM)
+
+  **NOTE:** In Development when using React `StrictMode` (which we are) components will be doubled rendered when they first mount to help you spot errors more easily because it runs the component through a mount and update right away. In the codesandbox demo, I removed Strict Mode so we can more easily understand what's happening with the cleanup.
 
 <!-- slide -->
 
