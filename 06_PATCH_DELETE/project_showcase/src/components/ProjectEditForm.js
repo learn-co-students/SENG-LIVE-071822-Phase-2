@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const ProjectEditForm = ({ projectToEdit, onCompleteEditing }) => {
+const ProjectEditForm = ({ projectToEdit, onUpdateProject }) => {
   
 
   const [formData, setFormData] = useState(projectToEdit);
@@ -23,7 +23,7 @@ const ProjectEditForm = ({ projectToEdit, onCompleteEditing }) => {
   function handleSubmit(e) {
     e.preventDefault();
     // Add code here
-    onCompleteEditing();
+    onUpdateProject();
   }
 
   return (

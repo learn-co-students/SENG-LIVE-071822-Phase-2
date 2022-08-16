@@ -36,11 +36,15 @@ const App = () => {
     setProjects((projects) => [...projects, newProj]);
   };
 
-  const onCompleteEditing = () => {
+  const onSelectedPhaseChange = (newPhase) => {
+    setSelectedPhase(newPhase)
+  }
+
+  const onUpdateProject = () => {
     setProjectToEdit(null);
   };
 
-  const onProjectEdit = (projectToEdit) => {
+  const onEditProject = (projectToEdit) => {
     setProjectToEdit(projectToEdit);
   };
 
@@ -49,7 +53,7 @@ const App = () => {
       return (
         <ProjectEditForm
           projectToEdit={projectToEdit}
-          onCompleteEditing={onCompleteEditing}
+          onUpdateProject={onUpdateProject}
         />
       );
     } else {
@@ -63,7 +67,8 @@ const App = () => {
       {renderForm()}
       <ProjectList
         projects={projects}
-        onProjectEdit={onProjectEdit}
+        onEditProject={onEditProject}
+        onSelectedPhaseChange={onSelectedPhaseChange}
         setSelectedPhase={setSelectedPhase}
         setSearchQuery={setSearchQuery}
       />
