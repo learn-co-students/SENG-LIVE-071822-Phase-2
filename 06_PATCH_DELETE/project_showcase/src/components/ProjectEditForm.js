@@ -23,7 +23,18 @@ const ProjectEditForm = ({ projectToEdit, onUpdateProject }) => {
   function handleSubmit(e) {
     e.preventDefault();
     // Add code here
-    onUpdateProject();
+    fetch(`http://localhost:4000/projects/${projectToEdit.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      }, 
+      body: JSON.stringify(formData)
+    })
+      .then(res => res.json())
+      .then(updatedProject => {
+        // console.log(updatedProject);
+        onUpdateProject(updatedProject);
+      })
   }
 
   return (

@@ -40,9 +40,25 @@ const App = () => {
     setSelectedPhase(newPhase)
   }
 
-  const onUpdateProject = () => {
+  const onUpdateProject = (updatedProject) => {
     setProjectToEdit(null);
+    console.log(updatedProject);
+    setProjects(projects => projects.map(originalProject => {
+      if (originalProject.id === updatedProject.id) {
+        return updatedProject;
+      } else {
+        return originalProject;
+      }
+    }))
   };
+
+  const onDeleteProject = (deletedProjectId) => {
+    // remove the project from state
+    console.log('deleting project from App state', 'id:', deletedProjectId)
+    setProjects(projects => projects.filter(project => {
+      return project.id !== deletedProjectId
+    }))
+  }
 
   const onEditProject = (projectToEdit) => {
     setProjectToEdit(projectToEdit);
@@ -68,6 +84,8 @@ const App = () => {
       <ProjectList
         projects={projects}
         onEditProject={onEditProject}
+        onUpdateProject={onUpdateProject}
+        onDeleteProject={onDeleteProject}
         onSelectedPhaseChange={onSelectedPhaseChange}
         setSelectedPhase={setSelectedPhase}
         setSearchQuery={setSearchQuery}

@@ -1,25 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaPencilAlt, FaTrash } from "react-icons/fa";
 
-const ProjectListItem = ({ project, onEditProject }) => {
-  const { id, image, about, name, link, phase } = project;
+const ProjectListItem = ({ project, onEditProject, onUpdateProject, onDeleteProject }) => {
+  const { id, image, about, name, link, phase, claps } = project;
 
-  const [clapCount, setClapCount] = useState(0);
 
-  const handleClap = (clapCount) => setClapCount(clapCount + 1);
+  const handleClap = () => {
+    fetch(`http://localhost:4000/projects/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({claps: claps + 1})
+    })
+      .then(res => res.json())
+      .then(updatedProject => {
+        onUpdateProject(updatedProject)
+      })
+  }
 
   const handleEditClick = () => {
     onEditProject(project);
   };
 
-  const handleDeleteClick = () => {};
+  const handleDeleteClick = () => {
+    fetch(`http://localhost:4000/projects/${id}`, {
+      method: "DELETE"
+    })
+    onDeleteProject(id)
+  };
 
   return (
     <li className="card">
       <figure className="image">
         <img src={image} alt={name} />
         <button onClick={handleClap} className="claps">
-          👏{clapCount}
+          👏{claps}
         </button>
       </figure>
 
