@@ -3,8 +3,8 @@ import { FaPencilAlt, FaTrash } from "react-icons/fa";
 
 const ProjectListItem = ({
   project,
-  onProjectEdit,
-  onProjectDelete,
+  onEditProject,
+  onDeleteProject,
 }) => {
   const { id, image, about, name, link, phase } = project;
 
@@ -13,11 +13,11 @@ const ProjectListItem = ({
   const handleClap = (clapCount) => setClapCount(clapCount + 1);
 
   const handleEditClick = () => {
-    onProjectEdit(project);
+    onEditProject(project);
   };
 
   const handleDeleteClick = () => {
-    onProjectDelete(id)
+    onDeleteProject(id)
     fetch(`http://localhost:4000/projects/${id}`, {
       method: "DELETE"
     })

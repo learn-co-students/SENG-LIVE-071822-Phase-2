@@ -123,8 +123,8 @@ return (
       {renderForm()}
       <ProjectList
         projects={projects}
-        onProjectEdit={onProjectEdit}
-        onProjectDelete={onProjectDelete}
+        onEditProject={onEditProject}
+        onDeleteProject={onDeleteProject}
         setSelectedPhase={setSelectedPhase}
         setSearchQuery={setSearchQuery}
       />

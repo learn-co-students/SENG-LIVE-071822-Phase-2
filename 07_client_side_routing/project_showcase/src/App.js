@@ -4,7 +4,6 @@ import Header from "./components/Header";
 import ProjectForm from "./components/ProjectForm";
 import ProjectList from "./components/ProjectList";
 import ProjectEditForm from "./components/ProjectEditForm";
-import ProjectPage from "./components/ProjectPage"
 import Home from "./components/Home";
 
 const App = () => {
@@ -34,6 +33,10 @@ const App = () => {
     setIsDarkMode((isDarkMode) => !isDarkMode);
   };
 
+  const onSelectedPhaseChange = (newPhase) => {
+    setSelectedPhase(newPhase)
+  }
+
   const onAddProject = (newProj) => {
     setProjects((projects) => [...projects, newProj]);
   };
@@ -48,15 +51,19 @@ const App = () => {
     }))
     setProjectToEdit(null);
   };
-
-  const onProjectEdit = (projectToEdit) => {
+  
+  const onDeleteProject = (deletedProjectId) => {
+    // remove the project from state
+    console.log('deleting project from App state', 'id:', deletedProjectId)
+    setProjects(projects => projects.filter(project => {
+      return project.id !== deletedProjectId
+    }))
+  }
+  
+  const onEditProject = (projectToEdit) => {
     setProjectToEdit(projectToEdit);
   };
-
-  const onProjectDelete = (projectId) => {
-    setProjects(projects => projects.filter(p => p.id !== projectId))
-  };
-
+  
   const renderForm = () => {
     if (projectToEdit) {
       return (
@@ -77,12 +84,13 @@ const App = () => {
       {renderForm()}
       <ProjectList
         projects={projects}
-        onProjectEdit={onProjectEdit}
-        onProjectDelete={onProjectDelete}
+        onEditProject={onEditProject}
+        onUpdateProject={onUpdateProject}
+        onDeleteProject={onDeleteProject}
+        onSelectedPhaseChange={onSelectedPhaseChange}
         setSelectedPhase={setSelectedPhase}
         setSearchQuery={setSearchQuery}
       />
-      <ProjectPage />
     </div>
   );
 };
