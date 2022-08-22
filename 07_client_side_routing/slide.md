@@ -36,6 +36,17 @@ presentation:
 
 "Client side routing is a type of routing where as the user navigates around the application or website no full page reloads take place, even when the page’s URL changes. Instead, JavaScript is used to update the URL and fetch and display new content" - Will Taylor
 
+<!-- slide -->
+
+## Install and setup react router
+
+- React Router has been updated to V6 but V5 is used in the curriculum.
+
+- To install V5 run this command: `npm install react-router-dom@5.3.3` otherwise, V6 will install by default
+
+- Within `index.js`, wrap the `App` component in the `BrowserRouter` component that will be imported from the `react-router-dom` library
+
+
 <!-- slide style="text-align: left;" -->
 
 <h2 style="text-align: center;"><strong> 🗒️ Planning Routes </strong></h2>
