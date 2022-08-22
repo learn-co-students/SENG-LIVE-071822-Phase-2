@@ -176,8 +176,8 @@ select:focus {
   padding: 1rem;
 }
 
-.filter .button {
-  margin: 0 1rem;
+.filter .button, .filter button {
+  margin: 0 0.5rem;
 }
 
 /* cards */
