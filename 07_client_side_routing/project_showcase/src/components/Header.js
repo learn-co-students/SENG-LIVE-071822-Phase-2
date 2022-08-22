@@ -5,11 +5,12 @@ const Header = ({ isDarkMode, onToggleDarkMode }) => {
 
   return (
     <header>
-      <nav>
-        <h1 className="branding">
-          <span className="logo">{"//"}</span>
+      <h1 className="branding">
+        <a href="/"><span className="logo">{"//"}</span>
           Project Showcase
-        </h1>
+        </a>
+      </h1>
+      <nav>
         <div className="navigation">
           <a className="button" href="/projects">
             All Projects
