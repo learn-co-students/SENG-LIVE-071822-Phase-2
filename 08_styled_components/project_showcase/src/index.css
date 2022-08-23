@@ -73,7 +73,7 @@ button:hover,
 .button:focus,
 .button:hover {
   outline: none;
-  color: var(--white);
+  color: var(--background);
   background-color: var(--primary);
   border: 2px solid var(--primary);
 }
@@ -227,7 +227,7 @@ select:focus {
 
 .card .image .claps {
   color: transparent;
-  text-shadow: 0 0 0 var(--turquoise);
+  text-shadow: 0 0 0 var(--primary);
   position: absolute;
   top: 10px;
   right: 10px;
@@ -236,7 +236,7 @@ select:focus {
 .card .image .claps:focus,
 .card .image .claps:hover {
   color: transparent;
-  text-shadow: 0 0 0 var(--color);
+  text-shadow: 0 0 0 var(--background);
 }
 
 .card .details {
@@ -282,30 +282,7 @@ select:focus {
   padding: 1.75rem;
 }
 
-.button,
-button {
-  padding: 0.5rem 0.75rem;
-  border: none;
-  font: inherit;
-  font-weight: 600;
-  color: inherit;
-  cursor: pointer;
-  color: var(--primary);
-  background-color: var(--background);
-  border: 2px solid var(--dark-turquoise);
-  transition: background-color 0.2s;
-}
-
-.button.active,
-.button:hover,
-button.active,
-button:focus,
-button:hover {
-  outline: none;
-  /* color: var(--white); */
-  background-color: var(--blue);
-  border: 2px solid var(--primary);
-}
+/* navigation */
 
 nav {
   padding: 1rem;
